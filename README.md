@@ -22,7 +22,7 @@ func main() {
 }
 ```
 
-Additionally you can configure fgtrace as a `http.Handler` and request traces on-demand by hitting `http://localhost:1234/debug/fgtrace?seconds=30&hz=100`.
+Alternatively you can configure fgtrace as a `http.Handler` and request traces on-demand by hitting `http://localhost:1234/debug/fgtrace?seconds=30&hz=100`.
 
 ```go
 package main
@@ -42,7 +42,7 @@ For more advanced use cases, have a look at the [API Documentation](https://pkg.
 
 ## Comparison with Similar Tools
 
-Below is a simple program that spends its time sleeping, requesting a website, capturing the response body and then hashing it a few times.
+Below is a [simple program](./testdata/readme/) that spends its time sleeping, requesting a website, capturing the response body and then hashing it a few times.
 
 ```go
 for i := 0; i < 10; i++ {
