@@ -97,7 +97,7 @@ func TestConfig(t *testing.T) {
 						(strings.HasSuffix(e.Name, "fgtrace.workloadA") ||
 							strings.HasSuffix(e.Name, "fgtrace.workloadB"))
 				}).Len()
-				wantCount := hz / int(time.Second/testDt)
+				wantCount := int(float64(hz) / (float64(time.Second) / float64(testDt)))
 				wantEpsilon := 0.2
 				if attempt < 7 {
 					epsilon := math.Abs(float64(wantCount-callCount)) / math.Abs(float64(wantCount))
