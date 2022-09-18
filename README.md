@@ -1,5 +1,8 @@
 # fgtrace - The Full Go Tracer
 
+[![ci test status](https://img.shields.io/github/workflow/status/felixge/fgtrace/Go?label=tests)](https://github.com/felixge/fgtrace/actions/workflows/go.yml?query=branch%3Amain)
+[![documentation](http://img.shields.io/badge/godoc-reference-blue.svg)](https://pkg.go.dev/github.com/felixge/fgtrace)
+
 fgtrace is an experimental profiler/tracer that is capturing wallclock timelines for each goroutine. It's very similar to the Chrome profiler.
 
 ⚠️ fgtrace may cause noticeable stop-the-world pauses in your applications. It is intended for dev and testing environments for now.
