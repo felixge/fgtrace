@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	defer fgtrace.TraceFile("json.json", fgtrace.WithHz(1000))()
+	defer fgtrace.Config{Dst: fgtrace.File("fgtrace.json"), Hz: 10000}.Trace().Stop()
 
 	stop := make(chan struct{})
 	go jsonHog(stop)
