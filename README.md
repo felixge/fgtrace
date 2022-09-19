@@ -19,7 +19,7 @@ package main
 import "github.com/felixge/fgtrace"
 
 func main() {
-	defer fgtrace.Config{Dst: fgtrace.File("fgtrace.json")}.Start().Stop()
+	defer fgtrace.Config{Dst: fgtrace.File("fgtrace.json")}.Trace().Stop()
 
 	// <code to trace>
 }
