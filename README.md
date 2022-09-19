@@ -122,12 +122,14 @@ After the data is captured, it is converted into the [Trace Event Format](https:
 
 ## The Future
 
+fgtrace is mostly a ["Do Things that Don't Scale"](http://paulgraham.com/ds.html) kind of project. If enough people like it, it will motivate me and perhaps others to invest into putting it on a solid technical foundation.
+
 The Go team has previously [declined](https://github.com/golang/go/issues/41324#issuecomment-703796820) the idea of adding wallclock profiling capabilities similar to fgprof (which is similar to fgtrace) to the Go project and is more likely to invest in `runtime/trace` going forward.
 
-So I mainly have two hopes for the future of fgtrace:
+That being said, I still think fgtrace can help by:
 
-1. Show the usefulness of stack-trace/wallclock focused timeline views in addition to the CPU-centric views used by `runtime/trace` to perhaps implement the future developement of the runtime tracer.
-2. Start a conversation (link to GH issue will follow ...) to offer more powerful goroutine profiling APIs to allow user-space tooling like this to thrive without having to hack around the [existing APIs](https://github.com/DataDog/go-profiler-notes/blob/main/goroutine.md#feature-matrix) while reducing their overhead.
+1. Showing the usefulness of stack-trace/wallclock focused timeline views in addition to the CPU-centric views used by `runtime/trace` to perhaps implement the future developement of the runtime tracer.
+2. Starting a conversation (link to GH issue will follow ...) to offer more powerful goroutine profiling APIs to allow user-space tooling like this to thrive without having to hack around the [existing APIs](https://github.com/DataDog/go-profiler-notes/blob/main/goroutine.md#feature-matrix) while reducing their overhead.
 
 
 
