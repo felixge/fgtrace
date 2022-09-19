@@ -126,7 +126,7 @@ The Go team has previously [declined](https://github.com/golang/go/issues/41324#
 
 So I mainly have two hopes for the future of fgtrace:
 
-1. Show the usefulness of stack-trace/wallclock focused timeline views in addition to the CPU-centric views used by `runtime/trace`.
+1. Show the usefulness of stack-trace/wallclock focused timeline views in addition to the CPU-centric views used by `runtime/trace` to perhaps implement the future developement of the runtime tracer.
 2. Start a conversation (link to GH issue will follow ...) to offer more powerful goroutine profiling APIs to allow user-space tooling like this to thrive without having to hack around the [existing APIs](https://github.com/DataDog/go-profiler-notes/blob/main/goroutine.md#feature-matrix) while reducing their overhead.
 
 
