@@ -3,9 +3,11 @@ package fgtrace
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 
@@ -96,7 +98,53 @@ func (c Config) Trace() *Trace {
 func (c Config) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c = c.WithDefaults()
 	c.Dst = Writer(w)
+
+	params := []struct {
+		Name string
+		Fn   func(val string) error
+	}{
+		{
+			Name: "seconds",
+			Fn: func(val string) error {
+				seconds, err := strconv.ParseFloat(val, 64)
+				if err != nil {
+					return err
+				} else if seconds <= 0 {
+					return errors.New("invalid value")
+				}
+				c.HTTPDuration = time.Duration(float64(time.Second) * seconds)
+				return nil
+			},
+		},
+		{
+			Name: "hz",
+			Fn: func(val string) error {
+				hz, err := strconv.Atoi(val)
+				if err != nil {
+					return err
+				} else if hz <= 0 {
+					return errors.New("invalid value")
+				}
+				c.Hz = hz
+				return nil
+			},
+		},
+	}
+
+	for _, p := range params {
+		val := r.URL.Query().Get(p.Name)
+		if val == "" {
+			continue
+		} else if err := p.Fn(val); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			fmt.Fprintf(w, "bad %s: %q: %s\n", p.Name, val, err)
+			return
+		}
+	}
+
 	defer c.Trace().Stop()
+	time.Sleep(c.HTTPDuration)
+
 }
 
 // File is a helper for Config.Dst that returns an io.WriteCloser that creates
