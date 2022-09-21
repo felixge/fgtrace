@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
@@ -181,6 +182,34 @@ func TestConfig(t *testing.T) {
 				require.False(t, graph.HasLeaf("running"))
 			})
 		})
+	})
+
+	t.Run("ServeHTTP", func(t *testing.T) {
+		t.Run("seconds", func(t *testing.T) {
+			for _, duration := range []time.Duration{
+				100 * time.Millisecond,
+				200 * time.Millisecond,
+				300 * time.Millisecond,
+			} {
+				rr := httptest.NewRecorder()
+				r := httptest.NewRequest("GET", fmt.Sprintf("/?seconds=%f", duration.Seconds()), nil)
+				start := time.Now()
+				Config{}.ServeHTTP(rr, r)
+				dt := time.Since(start)
+				require.InDelta(t, duration, dt, float64(25*time.Millisecond))
+			}
+		})
+
+		t.Run("hz", func(t *testing.T) {
+			hz := 123
+			rr := httptest.NewRecorder()
+			r := httptest.NewRequest("GET", fmt.Sprintf("/?hz=%d&seconds=0.1", hz), nil)
+			Config{}.ServeHTTP(rr, r)
+			data, err := internal.Unmarshal(rr.Body.Bytes())
+			require.NoError(t, err)
+			require.Equal(t, hz, data.MetaHz())
+		})
+
 	})
 }
 
