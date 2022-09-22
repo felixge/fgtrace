@@ -112,7 +112,7 @@ Last but not least it's possible to click on the goroutine id in the view above 
 
 <img src="./assets/runtime-example3.png"/>
 
-That being said, some of the limitations of `runtime/trace` could probably be resolved with changes to the UI or converting the traces into a format that [Perfetto UI](https://ui.perfetto.dev/) can understand which might be a fun project for another time.
+That being said, some of the limitations of `runtime/trace` could probably be resolved with changes to the UI (see [gotraceui](https://github.com/dominikh/gotraceui)) or converting the traces into a format that [Perfetto UI](https://ui.perfetto.dev/) can understand which might be a fun project for another time.
 
 ## How it Works
 
