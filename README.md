@@ -1,5 +1,6 @@
 # fgtrace - The Full Go Tracer
 
+[![go-recipes](https://raw.githubusercontent.com/nikolaydubina/go-recipes/main/badge.svg?raw=true)](https://github.com/nikolaydubina/go-recipes)
 [![ci test status](https://img.shields.io/github/workflow/status/felixge/fgtrace/Go?label=tests)](https://github.com/felixge/fgtrace/actions/workflows/go.yml?query=branch%3Amain)
 [![documentation](http://img.shields.io/badge/godoc-reference-blue.svg)](https://pkg.go.dev/github.com/felixge/fgtrace)
 
